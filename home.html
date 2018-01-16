@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>So</title>
+    <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #f2f2f2;
+            background-position: 50% 50%;
+            z-index: -1;
+        }
+
+        .main {
+            position: absolute;
+            width: 100%;
+            top: 30%;
+            left: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+
+        .search {
+            width: 500px;
+            height: 44px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            color: #666;
+            padding: 6px 10px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            border: 1px solid #f2f2f2;
+        }
+
+        .title {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-size: 55px;
+            line-height: 55px;
+            font-family: 'title';
+            letter-spacing: 8px;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .input {
+            margin: 0;
+            padding: 0;
+            flex: 1;
+            border: none;
+            outline: none
+        }
+
+        .search>img {
+            display: block;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-left: 10px
+        }
+
+        @media(max-width:400px) {}
+    </style>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="main">
+        <p class="title">soso</p>
+        <div class="search">
+            <input type="text" name="search" class="input">
+            <img src="https://s3.mogucdn.com/mlcdn/c45406/180115_027b415g3fhhg9a7hi9ab303b7i8e_64x64.png">
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var w = window.screen.width;
+            var h = window.screen.height;
+            $('.bg').css({
+                'background-image': `url(/bg?w=${w}&h=${h})`
+            })
+            var inputEle = $('.input');
+            var searchEle = $('.search>img');
+            searchEle.on('click', search);
+            inputEle.on('keypress', function (event) {
+                if (event.keyCode == '13') return search();
+            })
+
+            function search() {
+                var inputContent = encodeURIComponent(inputEle.val());
+                if (!inputContent) return;
+                location.href = '/search?newwindow=1&q=' + inputContent;
+            }
+        })();
+    </script>
+</body>
+
+</html>
